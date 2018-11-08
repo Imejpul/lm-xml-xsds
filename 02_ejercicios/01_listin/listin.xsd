@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="listin" />
+    <xs:element name="listin"/>
+    <xs:element name="persona" type="tipo_persona"/>
+    <xs:complexType name="tipo_persona">
+        <xs:sequence>
+            <xs:element name="nombre" type="xs:string"/>
+            <xs:element name="email" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="relacion" type="tipo_relacion" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="tipo_id" name="id" use="required"></xs:attribute>
+        <xs:attribute type="tipo_sexo" name="sexo"></xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="tipo_id">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z]{2,8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tipo_sexo">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Hombre"></xs:enumeration>
+            <xs:enumeration value="Mujer"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>
